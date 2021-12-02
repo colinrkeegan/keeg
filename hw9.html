@@ -1,24 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>JSON Pet Object</title>
+    <title>Assignment 9: JSON Song List</title>
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <p>yo</p>
     <script language="javascript">
-    document.write("test1<br/>");
-    $.get( "https://colinrkeegan.github.io/keeg/hw9.json",
+    $.get("https://colinrkeegan.github.io/keeg/hw9.json",
     function( data ) {
-        document.write("YO2!!<br/>");
-        str = JSON.stringify(data);
-        document.write(str +"<br/>");
+        // strSetlist = JSON.stringify(data);
+        // document.write("<tr>" + strSetlist + "</tr>");
+        strSetlist = JSON.stringify(data);
+        document.write(strSetlist +"<br/>");
         strHTML= "<ul>";
-        data.forEach(function(animal) {
+        data.forEach(function(hw9) {
             strHTML += "<li>"
-            + animal.name + " : "
-            + animal.type + "</li>";
+            + hw9.artist(s) + " : "
+            + hw9.type + "</li>";
         })
         strHTML += "</ul>";
         document.write (strHTML);  /**/
