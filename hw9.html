@@ -4,27 +4,68 @@
     <meta charset="utf-8">
     <title>Assignment 9: JSON Song List</title>
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-    <p>yo</p>
+    <p id="rawString"></p>
+
+    <form action="" method="post">
+        <select name="genreFilter">
+            <option value="Dance">Dance</option>
+            <option value="DreamPop">Dream Pop</option>
+            <option value="Funk">Funk</option>
+            <option value="Indie">Indie</option>
+            <option value="Pop">Pop</option>
+            <option value="Rap">Rap</option>
+            <option value="Soul">Soul</option>
+        </select>
+        <input type="submit" value="Filter">
+    </form>
+    <div class="filteredSongs" name="filteredSongs">
+        ok
+    </div>
+
+    <table id="userFriendly"></table>
+
     <script language="javascript">
     $.get("https://colinrkeegan.github.io/keeg/hw9.json",
     function( data ) {
         // strSetlist = JSON.stringify(data);
         // document.write("<tr>" + strSetlist + "</tr>");
         strSetlist = JSON.stringify(data);
-        document.write(strSetlist +"<br/>");
-        strHTML= "<ul>";
-        data.forEach(function(hw9) {
-            strHTML += "<li>"
-            + hw9.artist(s) + " : "
-            + hw9.type + "</li>";
+        // document.write(strSetlist +"<br/>");
+        $("#rawString").html("Raw string:<br/>" + strSetlist +"<br/>");
+        strHTML= "<table>";
+        data.forEach(function(song) {
+            strHTML += "<tr><td>"
+            + song.title + "<br/>Artist(s): "
+            + song.artist.join(", ") + "<br/>Genre(s): "
+            + song.genre.join(", ") + "<br/>Year: "
+            + song.year + "</tr></td>";
         })
-        strHTML += "</ul>";
-        document.write (strHTML);  /**/
+        strHTML += "</table>";
+        // document.write(strHTML);
+        // alert("YOO");
+        // alert(strHTML);
+        $("#userFriendly").html(strHTML +"<br/>");
     })
-</script>
+
+    $(document).ready(function(){
+        $("div[name='filteredSongs']").hide();
+
+        $("form select").change(function() {
+    		genre = this.value;
+            alert(genre);
+        	// index = this.name.substring(4);
+            //
+    		// updateCost(quantity, index);
+            // subTotal = updateSubTotal();
+            // tax = updateTax(subTotal);
+            // updateTotal(subTotal, tax);
+    	})
+    })
+    </script>
 </body>
 </html>
 
